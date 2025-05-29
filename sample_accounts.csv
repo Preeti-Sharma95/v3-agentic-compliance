@@ -1,0 +1,6 @@
+Account_ID,Customer_ID,Account_Type,Date_Last_Cust_Initiated_Activity,Expected_Account_Dormant,Compliant
+10001,501,Savings,2022-03-01,Yes,True
+10002,502,Current,2021-06-15,No,True
+10003,503,Savings,2020-12-01,Yes,False
+10004,504,Fixed Deposit,2024-01-10,No,True
+10005,505,Savings,2019-08-23,Yes,False
