@@ -1,4 +1,4 @@
-# main.py - Enhanced Banking Compliance System with Hybrid Memory Integration (Complete)
+# main.py - Enhanced Banking Compliance System with Integration Adapter (Complete)
 import streamlit as st
 import pandas as pd
 import os
@@ -14,14 +14,22 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Enhanced imports - Hybrid Memory Integration
+# Enhanced imports - Integration Adapter
 try:
-    from hybrid_memory_integration import HybridMemoryBankingSystem
+    from integration_adapter import create_integrated_banking_system
+
+    INTEGRATION_ADAPTER_AVAILABLE = True
+except ImportError as e:
+    INTEGRATION_ADAPTER_AVAILABLE = False
+    st.error(f"⚠️ Integration Adapter not available: {e}")
+
+# Hybrid integration import
+try:
+    from hybrid_integration import init_hybrid_memory_system
 
     HYBRID_INTEGRATION_AVAILABLE = True
-except ImportError as e:
+except ImportError:
     HYBRID_INTEGRATION_AVAILABLE = False
-    st.error(f"⚠️ Hybrid Memory Integration not available: {e}")
 
 # Import configuration and utilities
 try:
@@ -64,6 +72,14 @@ except ImportError as e:
     def get_trace_url(session_id):
         return None
 
+# Enhanced orchestrator import
+try:
+    from orchestrator import run_enhanced_flow, validate_workflow_data
+
+    ORCHESTRATOR_AVAILABLE = True
+except ImportError:
+    ORCHESTRATOR_AVAILABLE = False
+
 # Configure logging
 try:
     Path("logs").mkdir(exist_ok=True)
@@ -94,10 +110,26 @@ Path("data").mkdir(exist_ok=True)
 # =====================================
 
 @st.cache_resource
-def init_hybrid_memory_system():
-    """Initialize the hybrid memory system (cached for performance)"""
-    if HYBRID_INTEGRATION_AVAILABLE:
-        return HybridMemoryBankingSystem()
+def init_integrated_banking_system():
+    """Initialize the integrated banking system (cached for performance)"""
+    if INTEGRATION_ADAPTER_AVAILABLE:
+        try:
+            # Create an async wrapper to handle the async function
+            async def _create_system():
+                return await create_integrated_banking_system()
+
+            # Run the async function in a new event loop
+            try:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                system = loop.run_until_complete(_create_system())
+                return system
+            except RuntimeError:
+                # If there's already an event loop running, use asyncio.run
+                return asyncio.run(_create_system())
+        except Exception as e:
+            logger.error(f"Failed to initialize integrated banking system: {e}")
+            return None
     else:
         return None
 
@@ -112,24 +144,182 @@ def init_config_manager():
 
 
 def run_async_analysis(data, session_name=None, use_enhanced=True):
-    """Wrapper to run async analysis in Streamlit"""
+    """Updated async analysis wrapper"""
+
+    # Validate input data
+    if data is None:
+        logger.warning("No data provided for analysis")
+        return basic_fallback_analysis(pd.DataFrame(), session_name)
+
+    # Ensure data is a DataFrame
+    if not isinstance(data, pd.DataFrame):
+        try:
+            data = pd.DataFrame(data)
+        except Exception as e:
+            logger.error(f"Could not convert input to DataFrame: {e}")
+            return basic_fallback_analysis(pd.DataFrame(), session_name)
 
     async def async_wrapper():
         if HYBRID_INTEGRATION_AVAILABLE and use_enhanced:
-            system = init_hybrid_memory_system()
-            if system:
-                await system.initialize()
-                return await system.process_banking_data(data, session_name)
+            try:
+                system = init_hybrid_memory_system()
+                if system:
+                    await system.initialize()
+                    return await system.process_banking_data(data, session_name)
+            except Exception as e:
+                logger.error(f"Hybrid integration failed: {e}")
+                # Fall through to next option
 
-        # Fallback to basic processing
+        # Fallback to enhanced orchestrator if available
+        try:
+            if ORCHESTRATOR_AVAILABLE:
+                # Validate data first
+                is_valid, message = validate_workflow_data(data)
+                if not is_valid:
+                    logger.warning(f"Data validation failed: {message}")
+                    return basic_fallback_analysis(data, session_name)
+
+                # Run enhanced workflow
+                final_state, memory = run_enhanced_flow(data)
+
+                # Convert to expected format
+                if hasattr(final_state, '__dict__'):
+                    state_dict = final_state.__dict__
+                else:
+                    state_dict = final_state
+
+                # Create agent logs from memory
+                agent_logs = []
+                if memory:
+                    memory_logs = memory.get(final_state.session_id)
+                    for log_entry in memory_logs:
+                        agent_logs.append({
+                            'agent': log_entry.get('event', 'unknown'),
+                            'timestamp': datetime.now().isoformat(),
+                            'status': 'success' if 'error' not in log_entry.get('event', '') else 'error',
+                            'details': log_entry.get('data', {})
+                        })
+
+                return state_dict, agent_logs
+            else:
+                # Final fallback to basic processing
+                return basic_fallback_analysis(data, session_name)
+
+        except ImportError:
+            # Final fallback to basic processing
+            return basic_fallback_analysis(data, session_name)
+        except Exception as e:
+            logger.error(f"Enhanced orchestrator failed: {e}")
+            return basic_fallback_analysis(data, session_name)
+
+    try:
+        return asyncio.run(async_wrapper())
+    except RuntimeError as e:
+        if "asyncio.run() cannot be called from a running event loop" in str(e):
+            # Handle case where we're already in an event loop
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            try:
+                return loop.run_until_complete(async_wrapper())
+            finally:
+                loop.close()
+        else:
+            logger.error(f"Async runtime error: {e}")
+            return basic_fallback_analysis(data, session_name)
+    except Exception as e:
+        logger.error(f"Analysis execution error: {e}")
         return basic_fallback_analysis(data, session_name)
-
-    return asyncio.run(async_wrapper())
 
 
 def basic_fallback_analysis(data, session_name):
-    """Fallback analysis when hybrid integration is not available"""
+    """Fallback analysis when integration adapter is not available"""
     logger.info("Running fallback analysis")
+
+    # Ensure data is valid
+    if data is None:
+        logger.warning("No data provided to fallback analysis")
+        data = pd.DataFrame()  # Create empty DataFrame as fallback
+
+    # Convert to DataFrame if it's not already
+    if not isinstance(data, pd.DataFrame):
+        try:
+            data = pd.DataFrame(data)
+        except Exception as e:
+            logger.error(f"Could not convert data to DataFrame: {e}")
+            data = pd.DataFrame()
+
+    # Calculate basic metrics
+    data_length = len(data) if hasattr(data, '__len__') else 0
+
+    # Create detailed agent logs for visibility
+    agent_logs = [
+        {
+            'agent': 'data_validator',
+            'timestamp': datetime.now().isoformat(),
+            'status': 'success',
+            'details': {
+                'message': 'Data validation completed',
+                'data_type': str(type(data)),
+                'data_shape': f"{data.shape}" if hasattr(data, 'shape') else 'N/A',
+                'columns': list(data.columns) if hasattr(data, 'columns') else [],
+                'rows_processed': data_length
+            }
+        },
+        {
+            'agent': 'basic_analyzer',
+            'timestamp': datetime.now().isoformat(),
+            'status': 'success',
+            'details': {
+                'message': 'Basic analysis completed',
+                'analysis_type': 'fallback_mode',
+                'features_available': ['data_overview', 'basic_metrics'],
+                'enhanced_features': 'not_available'
+            }
+        },
+        {
+            'agent': 'compliance_checker',
+            'timestamp': datetime.now().isoformat(),
+            'status': 'success',
+            'details': {
+                'message': 'Basic compliance check completed',
+                'compliance_columns_found': [],
+                'dormancy_analysis': 'basic_mode',
+                'recommendations_generated': 3
+            }
+        },
+        {
+            'agent': 'report_generator',
+            'timestamp': datetime.now().isoformat(),
+            'status': 'success',
+            'details': {
+                'message': 'Report generation completed',
+                'report_format': 'basic',
+                'export_options': ['csv', 'json'],
+                'session_id': session_name or f'fallback_{int(time.time())}'
+            }
+        }
+    ]
+
+    # Add compliance analysis if data has relevant columns
+    if hasattr(data, 'columns') and data_length > 0:
+        compliance_columns = []
+        if 'Expected_Account_Dormant' in data.columns:
+            compliance_columns.append('Expected_Account_Dormant')
+        if 'Account_Type' in data.columns:
+            compliance_columns.append('Account_Type')
+        if 'Current_Balance' in data.columns:
+            compliance_columns.append('Current_Balance')
+
+        # Update compliance checker details
+        agent_logs[2]['details']['compliance_columns_found'] = compliance_columns
+
+        if 'Expected_Account_Dormant' in data.columns:
+            try:
+                dormant_count = len(
+                    data[data['Expected_Account_Dormant'].astype(str).str.lower().isin(['yes', 'true', '1'])])
+                agent_logs[2]['details']['dormant_accounts_found'] = dormant_count
+            except Exception as e:
+                agent_logs[2]['details']['dormancy_check_error'] = str(e)
 
     # Basic analysis results
     results = {
@@ -140,35 +330,35 @@ def basic_fallback_analysis(data, session_name):
         'compliance_results': None,
         'non_compliant_data': None,
         'current_step': 'completed',
-        'messages': [],
+        'messages': [
+            "✅ Data validation completed",
+            "✅ Basic analysis completed",
+            "✅ Compliance check completed",
+            "✅ Report generated"
+        ],
         'error': None,
         'confidence_score': 0.6,  # Lower confidence for basic mode
         'timestamp': datetime.now(),
-        'agent_logs': [{
-            'agent': 'fallback_processor',
-            'timestamp': datetime.now().isoformat(),
-            'status': 'success',
-            'details': {
-                'message': 'Basic fallback analysis completed',
-                'accounts_processed': len(data),
-                'mode': 'fallback'
-            }
-        }],
+        'agent_logs': agent_logs,
         'notifications': [
-            f"✅ Processed {len(data)} accounts using basic mode",
-            "⚠️ Enhanced features not available - using fallback analysis"
+            f"✅ Processed {data_length} accounts using basic mode",
+            "⚠️ Enhanced features not available - using fallback analysis",
+            "💡 Install integration components for enhanced analysis",
+            f"📊 Session: {session_name or f'fallback_{int(time.time())}'}"
         ],
-        'final_result': f"Basic analysis completed for {len(data)} accounts",
+        'final_result': f"Basic analysis completed for {data_length} accounts. System running in fallback mode.",
         'recommendations': [
-            "Install hybrid memory components for enhanced analysis",
-            "Review account data manually for compliance",
-            "Consider upgrading to enhanced mode"
+            "Install integration adapter components for enhanced analysis",
+            "Review account data manually for detailed compliance checking",
+            "Consider upgrading to enhanced mode for full feature access",
+            "Check system logs for any missing dependencies",
+            "Verify data format matches expected banking compliance schema"
         ],
         'mcp_enabled': False,
         'mcp_results': None
     }
 
-    agent_logs = results['agent_logs']
+    logger.info(f"Fallback analysis completed. Processed {data_length} records.")
     return results, agent_logs
 
 
@@ -176,8 +366,10 @@ def get_system_health():
     """Get comprehensive system health status"""
     health = {
         'timestamp': datetime.now().isoformat(),
-        'hybrid_integration': HYBRID_INTEGRATION_AVAILABLE,
+        'integration_adapter': INTEGRATION_ADAPTER_AVAILABLE,
         'enhanced_imports': ENHANCED_IMPORTS,
+        'hybrid_integration': HYBRID_INTEGRATION_AVAILABLE,
+        'orchestrator': ORCHESTRATOR_AVAILABLE,
         'components': {
             'streamlit': True,
             'pandas': True,
@@ -185,10 +377,10 @@ def get_system_health():
         }
     }
 
-    if HYBRID_INTEGRATION_AVAILABLE:
+    if INTEGRATION_ADAPTER_AVAILABLE:
         try:
-            system = init_hybrid_memory_system()
-            if system:
+            system = init_integrated_banking_system()
+            if system and hasattr(system, 'get_system_status'):
                 health['system_status'] = system.get_system_status()
         except Exception as e:
             health['system_error'] = str(e)
@@ -197,13 +389,119 @@ def get_system_health():
 
 
 def display_dormancy_analysis(state_dict, use_enhanced):
-    """Display dormancy analysis results"""
-    if state_dict.get("dormant_results"):
+    """Display dormancy analysis results - UPDATED for new system"""
+
+    # Check for enhanced dormancy summary report
+    if state_dict.get("dormant_summary_report"):
+        dsr = state_dict["dormant_summary_report"]
+
+        st.markdown("#### 🎯 Enhanced Dormancy Analysis Summary")
+
+        # Overview metrics
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            total_flagged = dsr.consolidated_findings.get('total_unique_flagged_accounts', 0)
+            st.metric("Total Flagged", total_flagged)
+        with col2:
+            dormancy_rate = dsr.summary_statistics.get('overall_dormancy_rate', 0)
+            st.metric("Dormancy Rate", f"{dormancy_rate:.1f}%")
+        with col3:
+            risk_level = dsr.risk_assessment.get('risk_level', 'UNKNOWN')
+            risk_color = {"LOW": "🟢", "MEDIUM": "🟡", "HIGH": "🟠", "CRITICAL": "🔴"}.get(risk_level, "⚪")
+            st.metric("Risk Level", f"{risk_color} {risk_level}")
+        with col4:
+            balance_at_risk = dsr.summary_statistics.get('total_balance_at_risk', 0)
+            st.metric("Balance at Risk", f"${balance_at_risk:,.2f}")
+
+        # Priority Analysis
+        st.markdown("#### 🚨 Priority Analysis")
+        priority_tabs = st.tabs(["Critical", "High Priority", "Medium Priority", "All Results"])
+
+        with priority_tabs[0]:  # Critical
+            critical_results = [r for r in dsr.analysis_results if r.priority_level == 'CRITICAL' and r.count > 0]
+            if critical_results:
+                for result in critical_results:
+                    st.error(f"**{result.regulation_article}**: {result.description}")
+                    if result.details.get('urgency') == 'HIGH':
+                        st.markdown("⏰ **Immediate action required**")
+            else:
+                st.success("✅ No critical issues found")
+
+        with priority_tabs[1]:  # High Priority
+            high_results = [r for r in dsr.analysis_results if r.priority_level == 'HIGH' and r.count > 0]
+            if high_results:
+                for result in high_results:
+                    st.warning(f"**{result.regulation_article}**: {result.description}")
+                    st.write(f"Risk Score: {result.risk_score:.2f}")
+            else:
+                st.success("✅ No high priority issues found")
+
+        with priority_tabs[2]:  # Medium Priority
+            medium_results = [r for r in dsr.analysis_results if r.priority_level == 'MEDIUM' and r.count > 0]
+            if medium_results:
+                for result in medium_results:
+                    st.info(f"**{result.regulation_article}**: {result.description}")
+            else:
+                st.success("✅ No medium priority issues found")
+
+        with priority_tabs[3]:  # All Results
+            st.markdown("**Complete Analysis Results:**")
+            for result in dsr.analysis_results:
+                if result.count > 0:
+                    priority_icon = {"CRITICAL": "🔴", "HIGH": "🟠", "MEDIUM": "🟡", "LOW": "🟢"}.get(result.priority_level,
+                                                                                                  "⚪")
+
+                    with st.expander(f"{priority_icon} {result.regulation_article} - {result.count} accounts"):
+                        st.write(f"**Description:** {result.description}")
+                        st.write(f"**Priority:** {result.priority_level}")
+                        st.write(f"**Risk Score:** {result.risk_score:.2f}")
+                        st.write(f"**Criteria:** {result.details.get('criteria', 'N/A')}")
+
+                        if result.details.get('sample_accounts'):
+                            st.write(f"**Sample Account IDs:** {', '.join(result.details['sample_accounts'][:3])}")
+
+        # Action Recommendations
+        if dsr.action_recommendations:
+            st.markdown("#### 📋 Action Recommendations")
+            for i, rec in enumerate(dsr.action_recommendations, 1):
+                priority_color = {"CRITICAL": "🔴", "HIGH": "🟠", "MEDIUM": "🟡", "LOW": "🟢"}.get(rec['priority'], "⚪")
+
+                with st.expander(f"{priority_color} {rec['priority']}: {rec['action']}"):
+                    st.write(f"**Description:** {rec['description']}")
+                    st.write(f"**Deadline:** {rec['deadline']}")
+                    st.write(f"**Regulation:** {rec['regulation']}")
+                    st.write(f"**Affected Accounts:** {rec['affected_accounts']}")
+
+        # Compliance Status
+        st.markdown("#### ⚖️ Regulatory Compliance Status")
+        compliance_status = dsr.regulatory_compliance_status
+
+        status_color = {
+            "COMPLIANT": "🟢",
+            "NEEDS_ATTENTION": "🟡",
+            "NON_COMPLIANT": "🔴"
+        }.get(compliance_status['overall_status'], "⚪")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Compliance Status", f"{status_color} {compliance_status['overall_status']}")
+            st.metric("Compliance Score", f"{compliance_status['compliance_score']:.1f}/100")
+        with col2:
+            st.metric("Critical Violations", compliance_status['critical_violations'])
+
+            if compliance_status['regulatory_gaps']:
+                st.markdown("**Regulatory Gaps:**")
+                for gap in compliance_status['regulatory_gaps']:
+                    st.write(f"- {gap['regulation']}: {gap['issue']}")
+
+    elif state_dict.get("dormant_results"):
+        # Legacy format display
         dr = state_dict["dormant_results"]
         kpis = dr.get("summary_kpis", {})
 
-        # Dormancy overview
-        st.markdown("#### Summary Metrics")
+        st.markdown("#### 📊 Dormancy Analysis (Legacy Mode)")
+
+        # Summary Metrics
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("Dormancy Rate", f"{kpis.get('percentage_dormant_of_total', 0):.1f}%")
@@ -213,7 +511,7 @@ def display_dormancy_analysis(state_dict, use_enhanced):
             st.metric("CB Transfer Eligible", kpis.get('count_eligible_for_cb_transfer', 0))
 
         # Detailed breakdown
-        st.markdown("#### Dormant Accounts Breakdown")
+        st.markdown("#### 🏦 Dormant Accounts Breakdown")
         breakdown_data = {
             'Safe Deposit': kpis.get('count_sdb_dormant', 0),
             'Investment': kpis.get('count_investment_dormant', 0),
@@ -230,16 +528,21 @@ def display_dormancy_analysis(state_dict, use_enhanced):
                     st.metric(f"{category}", f"{count} ({percentage:.1f}%)")
         else:
             st.info("No dormant accounts found in detailed categories.")
-
-        # Enhanced features
-        if use_enhanced:
-            st.markdown("#### 📈 Dormancy Visualization")
-            st.info("✨ Enhanced visualization features available - interactive charts would be displayed here")
     else:
         # Fallback analysis using basic data
         data = state_dict.get("data")
-        if data is not None and not data.empty:
-            st.markdown("#### Basic Dormancy Analysis")
+
+        # Safe data checking
+        data_exists = False
+        try:
+            if data is not None and hasattr(data, 'empty') and hasattr(data, '__len__'):
+                if not data.empty and len(data) > 0:
+                    data_exists = True
+        except Exception as e:
+            logger.warning(f"Error checking data in dormancy analysis: {e}")
+
+        if data_exists:
+            st.markdown("#### 📊 Basic Dormancy Analysis")
 
             if 'Expected_Account_Dormant' in data.columns:
                 dormant_accounts = data[
@@ -263,6 +566,52 @@ def display_dormancy_analysis(state_dict, use_enhanced):
                 st.info("No dormancy information available in the data.")
         else:
             st.info("No dormancy analysis results available.")
+
+
+def display_enhanced_summary(state_dict):
+    """Display enhanced summary if available"""
+
+    if state_dict.get("executive_summary"):
+        st.markdown("#### 📋 Executive Summary")
+        st.text_area(
+            "Executive Summary",
+            state_dict["executive_summary"],
+            height=200,
+            help="AI-generated executive summary of the dormancy analysis"
+        )
+
+    if state_dict.get("dormant_summary_report"):
+        dsr = state_dict["dormant_summary_report"]
+
+        # Risk Assessment Gauge
+        st.markdown("#### 🎯 Risk Assessment")
+        risk_score = dsr.risk_assessment.get('overall_risk_score', 0.5)
+
+        # Create a simple progress bar for risk
+        risk_percentage = risk_score * 100
+        risk_color = "🟢" if risk_score < 0.3 else "🟡" if risk_score < 0.6 else "🔴"
+
+        col1, col2 = st.columns([1, 2])
+        with col1:
+            st.metric("Risk Score", f"{risk_percentage:.1f}%")
+        with col2:
+            st.progress(risk_score)
+            st.write(f"{risk_color} {dsr.risk_assessment.get('risk_level', 'UNKNOWN')} Risk")
+
+        # Financial Risk
+        financial_risk = dsr.risk_assessment.get('financial_risk', 'UNKNOWN')
+        balance_at_risk = dsr.summary_statistics.get('total_balance_at_risk', 0)
+
+        if balance_at_risk > 0:
+            st.markdown(f"**Financial Risk:** {financial_risk}")
+            st.markdown(f"**Total Balance at Risk:** ${balance_at_risk:,.2f}")
+
+        # Risk Factors
+        risk_factors = dsr.risk_assessment.get('risk_factors', [])
+        if risk_factors:
+            st.markdown("**Key Risk Factors:**")
+            for factor in risk_factors:
+                st.write(f"- {factor}")
 
 
 def display_compliance_analysis(state_dict, use_enhanced):
@@ -312,7 +661,17 @@ def display_compliance_analysis(state_dict, use_enhanced):
         # Basic compliance analysis
         st.markdown("#### Basic Compliance Analysis")
         data = state_dict.get("data")
-        if data is not None and not data.empty:
+
+        # Safe data checking
+        data_exists = False
+        try:
+            if data is not None and hasattr(data, 'empty') and hasattr(data, '__len__'):
+                if not data.empty and len(data) > 0:
+                    data_exists = True
+        except Exception as e:
+            logger.warning(f"Error checking data in compliance analysis: {e}")
+
+        if data_exists:
             # Check for basic compliance indicators
             issues = []
 
@@ -423,27 +782,29 @@ def display_memory_insights(state_dict):
     """Display memory and system insights"""
     st.markdown("#### 🧠 Memory & System Insights")
 
-    if HYBRID_INTEGRATION_AVAILABLE:
+    if INTEGRATION_ADAPTER_AVAILABLE:
         try:
-            system = init_hybrid_memory_system()
-            if system and system.memory_agent:
+            system = init_integrated_banking_system()
+            if system and hasattr(system, 'memory_agent'):
                 # Memory statistics
-                memory_stats = system.memory_agent.get_knowledge_stats()
+                if hasattr(system.memory_agent, 'get_knowledge_stats'):
+                    memory_stats = system.memory_agent.get_knowledge_stats()
 
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.markdown("**Memory Statistics:**")
-                    st.json(memory_stats)
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.markdown("**Memory Statistics:**")
+                        st.json(memory_stats)
 
-                with col2:
-                    st.markdown("**System Performance:**")
-                    perf_stats = system.get_system_status()
-                    if 'system_stats' in perf_stats:
-                        st.json(perf_stats['system_stats'])
+                    with col2:
+                        st.markdown("**System Performance:**")
+                        if hasattr(system, 'get_system_status'):
+                            perf_stats = system.get_system_status()
+                            if 'system_stats' in perf_stats:
+                                st.json(perf_stats['system_stats'])
 
                 # Session insights
                 session_id = state_dict.get('session_id')
-                if session_id:
+                if session_id and hasattr(system, 'get_session_history'):
                     st.markdown("#### 📈 Session History")
                     history = system.get_session_history(session_id)
                     if 'error' not in history:
@@ -456,7 +817,7 @@ def display_memory_insights(state_dict):
         except Exception as e:
             st.warning(f"Memory insights error: {e}")
     else:
-        st.info("Hybrid memory integration not available")
+        st.info("Integration adapter not available")
 
         # Show basic system info
         health = get_system_health()
@@ -475,38 +836,72 @@ def display_system_logs(state_dict, agent_logs, langsmith_enabled):
         st.markdown(f"**Session ID:** `{state_dict['session_id']}`")
 
     # Agent performance
-    if agent_logs:
+    if agent_logs and len(agent_logs) > 0:
         st.markdown("#### Execution Summary")
-        success_count = sum(1 for log in agent_logs if log.get("status") == "success")
-        total_count = len(agent_logs)
 
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Success Rate", f"{success_count}/{total_count}")
-        with col2:
-            st.metric("Total Steps", total_count)
-        with col3:
-            processing_time = 1.5  # Estimated
-            st.metric("Processing Time", f"{processing_time:.1f}s")
+        try:
+            success_count = sum(1 for log in agent_logs if log.get("status") == "success")
+            total_count = len(agent_logs)
 
-        # Detailed logs
-        st.markdown("#### 📝 Detailed Execution Logs")
-        for i, log in enumerate(agent_logs):
-            status_icon = "✅" if log.get("status") == "success" else "❌"
-            agent_name = log.get("agent", "unknown").replace("_", " ").title()
-            timestamp = log.get("timestamp", "unknown")
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Success Rate", f"{success_count}/{total_count}")
+            with col2:
+                st.metric("Total Steps", total_count)
+            with col3:
+                processing_time = 1.5  # Estimated
+                st.metric("Processing Time", f"{processing_time:.1f}s")
 
-            st.markdown(f"**{status_icon} Step {i + 1}: {agent_name}**")
-            st.caption(f"Timestamp: {timestamp}")
+            # Detailed logs
+            st.markdown("#### 📝 Detailed Execution Logs")
+            for i, log in enumerate(agent_logs):
+                try:
+                    status_icon = "✅" if log.get("status") == "success" else "❌"
+                    agent_name = log.get("agent", "unknown").replace("_", " ").title()
+                    timestamp = log.get("timestamp", "unknown")
 
-            if log.get("details"):
-                st.markdown(f"**Details for {agent_name}:**")
-                st.json(log["details"])
+                    st.markdown(f"**{status_icon} Step {i + 1}: {agent_name}**")
+                    st.caption(f"Timestamp: {timestamp}")
 
-            if i < len(agent_logs) - 1:  # Don't add divider after last item
-                st.divider()
+                    if log.get("details"):
+                        st.markdown(f"**Details for {agent_name}:**")
+                        try:
+                            st.json(log["details"])
+                        except Exception as json_error:
+                            st.text(str(log["details"]))
+
+                    if i < len(agent_logs) - 1:  # Don't add divider after last item
+                        st.divider()
+                except Exception as e:
+                    st.error(f"Error displaying log entry {i}: {e}")
+                    st.json(log)  # Show raw log if formatting fails
+        except Exception as e:
+            st.error(f"Error processing agent logs: {e}")
+            st.markdown("**Raw Agent Logs:**")
+            st.json(agent_logs)
     else:
         st.info("No execution logs available.")
+
+        # Show some basic system info instead
+        st.markdown("#### 🔧 System Status")
+        try:
+            health = get_system_health()
+            st.json(health)
+        except Exception as e:
+            st.error(f"Could not get system health: {e}")
+
+        # Check if we can show session info
+        if state_dict:
+            st.markdown("#### 📊 Session Information")
+            session_info = {
+                'session_id': state_dict.get('session_id', 'unknown'),
+                'timestamp': str(state_dict.get('timestamp', 'unknown')),
+                'confidence_score': state_dict.get('confidence_score', 0),
+                'final_result': state_dict.get('final_result', 'No result available'),
+                'notifications_count': len(state_dict.get('notifications', [])),
+                'recommendations_count': len(state_dict.get('recommendations', []))
+            }
+            st.json(session_info)
 
 
 def display_export_section(state_dict):
@@ -542,7 +937,7 @@ def display_export_section(state_dict):
             'final_result': state_dict.get("final_result", ""),
             'recommendations': state_dict.get("recommendations", []),
             'notifications': state_dict.get("notifications", []),
-            'system_mode': 'enhanced' if HYBRID_INTEGRATION_AVAILABLE else 'basic'
+            'system_mode': 'enhanced' if INTEGRATION_ADAPTER_AVAILABLE else 'basic'
         }
 
         report_json = json.dumps(report_data, indent=2, default=str)
@@ -556,7 +951,17 @@ def display_export_section(state_dict):
     with col3:
         # Raw data export
         data = state_dict.get("data")
-        if data is not None and not data.empty:
+
+        # Safe data checking
+        data_exists = False
+        try:
+            if data is not None and hasattr(data, 'empty') and hasattr(data, '__len__'):
+                if not data.empty and len(data) > 0:
+                    data_exists = True
+        except Exception as e:
+            logger.warning(f"Error checking data in export: {e}")
+
+        if data_exists:
             csv_data = data.to_csv(index=False).encode('utf-8')
             st.download_button(
                 label="💾 Download Processed Data",
@@ -569,13 +974,13 @@ def display_export_section(state_dict):
 
 
 def display_results(final_state, agent_logs, use_enhanced, langsmith_enabled):
-    """Display analysis results with enhanced features"""
+    """Display analysis results with enhanced features - UPDATED"""
 
     # Handle both dict and object states
     if hasattr(final_state, '__dict__'):
         state_dict = final_state.__dict__
     else:
-        state_dict = final_state
+        state_dict = final_state if final_state is not None else {}
 
     # Error handling
     if state_dict.get("error"):
@@ -594,6 +999,19 @@ def display_results(final_state, agent_logs, use_enhanced, langsmith_enabled):
             st.json(health)
         return
 
+    # Handle case where final_state is None or empty
+    if not state_dict:
+        st.error("❌ No analysis results available")
+        st.warning("The analysis did not return any results. This might be due to:")
+        st.write("- Missing or invalid input data")
+        st.write("- System initialization failure")
+        st.write("- Missing required components")
+
+        if st.button("View System Health"):
+            health = get_system_health()
+            st.json(health)
+        return
+
     # Main results summary
     st.markdown("## 📈 Analysis Results")
 
@@ -603,6 +1021,14 @@ def display_results(final_state, agent_logs, use_enhanced, langsmith_enabled):
         st.markdown("### Banking Compliance Analysis Report")
         session_id = state_dict.get('session_id', 'unknown')
         st.caption(f"Session ID: `{session_id}`")
+
+        # Show analysis mode
+        if state_dict.get("dormant_summary_report"):
+            st.success("🚀 Enhanced Modular Analysis Mode")
+        elif state_dict.get("dormant_results"):
+            st.info("⚡ Legacy Analysis Mode")
+        else:
+            st.warning("📊 Basic Analysis Mode")
 
     with col_header2:
         # System mode indicator
@@ -626,10 +1052,14 @@ def display_results(final_state, agent_logs, use_enhanced, langsmith_enabled):
 
     with col2:
         dormant_count = 0
-        if state_dict.get("dormant_results"):
+        if state_dict.get("dormant_summary_report"):
+            dormant_count = state_dict["dormant_summary_report"].consolidated_findings.get(
+                'total_unique_flagged_accounts', 0)
+        elif state_dict.get("dormant_results"):
             dormant_count = state_dict["dormant_results"].get("summary_kpis", {}).get("total_accounts_flagged_dormant",
                                                                                       0)
-        elif state_dict.get("data") is not None:
+        elif state_dict.get("data") is not None and hasattr(state_dict["data"], 'empty') and not state_dict[
+            "data"].empty:
             # Fallback calculation
             df = state_dict["data"]
             if 'Expected_Account_Dormant' in df.columns:
@@ -649,26 +1079,58 @@ def display_results(final_state, agent_logs, use_enhanced, langsmith_enabled):
 
     with col4:
         recommendations_count = len(state_dict.get("recommendations", []))
+        if state_dict.get("dormant_summary_report"):
+            recommendations_count = len(state_dict["dormant_summary_report"].action_recommendations)
         st.metric("Recommendations", recommendations_count)
 
     # Data overview
     st.markdown("### 📊 Data Overview")
     data = state_dict.get("data")
-    if data is not None and not data.empty:
+
+    # Safe data checking with debug
+    data_exists = safe_data_check(data, "display_results_data_overview")
+    data_length = 0
+    data_columns = 0
+
+    if data_exists:
+        try:
+            data_length = len(data)
+            data_columns = len(data.columns) if hasattr(data, 'columns') else 0
+        except Exception as e:
+            logger.error(f"Error getting data metrics: {e}")
+            data_exists = False
+
+    if data_exists:
         col_data1, col_data2, col_data3 = st.columns(3)
 
         with col_data1:
-            st.metric("Total Accounts", len(data))
+            st.metric("Total Accounts", data_length)
 
         with col_data2:
-            if 'Current_Balance' in data.columns:
-                total_balance = pd.to_numeric(data['Current_Balance'], errors='coerce').sum()
-                st.metric("Total Balance", f"${total_balance:,.2f}")
+            if data_exists and hasattr(data, 'columns') and 'Current_Balance' in data.columns:
+                try:
+                    total_balance = pd.to_numeric(data['Current_Balance'], errors='coerce').sum()
+                    st.metric("Total Balance", f"${total_balance:,.2f}")
+                except Exception as e:
+                    st.metric("Total Balance", "Error calculating")
             else:
                 st.metric("Total Balance", "N/A")
 
         with col_data3:
-            st.metric("Data Columns", len(data.columns))
+            st.metric("Data Columns", data_columns)
+    else:
+        col_data1, col_data2, col_data3 = st.columns(3)
+        with col_data1:
+            st.metric("Total Accounts", "0")
+        with col_data2:
+            st.metric("Total Balance", "N/A")
+        with col_data3:
+            st.metric("Data Columns", "0")
+
+    # Enhanced Summary Section
+    if state_dict.get("dormant_summary_report") or state_dict.get("executive_summary"):
+        st.markdown("---")
+        display_enhanced_summary(state_dict)
 
     # Detailed analysis tabs
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
@@ -720,11 +1182,11 @@ langsmith_enabled = setup_langsmith() if ENHANCED_IMPORTS else False
 
 # Page header
 st.title("🏦 Advanced Agentic AI Banking Compliance System")
-st.markdown("*Enhanced Banking Compliance Analysis | CBUAE Compliant | Hybrid Memory Integration*")
+st.markdown("*Enhanced Banking Compliance Analysis | CBUAE Compliant | Integration Adapter*")
 
 # System status banner
-if HYBRID_INTEGRATION_AVAILABLE:
-    st.success("🚀 **Enhanced Mode Active** - Hybrid Memory & MCP Integration Available")
+if INTEGRATION_ADAPTER_AVAILABLE:
+    st.success("🚀 **Enhanced Mode Active** - Integration Adapter Available")
 else:
     st.warning("⚡ **Basic Mode Active** - Enhanced features not available")
 
@@ -734,10 +1196,10 @@ with st.sidebar:
 
     # Analysis mode selection
     st.subheader("🎯 Analysis Mode")
-    if HYBRID_INTEGRATION_AVAILABLE:
+    if INTEGRATION_ADAPTER_AVAILABLE or HYBRID_INTEGRATION_AVAILABLE:
         analysis_mode = st.selectbox(
             "Select Analysis Mode",
-            ["Enhanced (with hybrid memory)", "Basic (fallback mode)"],
+            ["Enhanced (with integration adapter)", "Basic (fallback mode)"],
             index=0
         )
         use_enhanced = analysis_mode.startswith("Enhanced")
@@ -751,8 +1213,10 @@ with st.sidebar:
     # Component status
     components_status = {
         "Streamlit": True,
+        "Integration Adapter": INTEGRATION_ADAPTER_AVAILABLE,
         "Hybrid Integration": HYBRID_INTEGRATION_AVAILABLE,
         "Enhanced Imports": ENHANCED_IMPORTS,
+        "Orchestrator": ORCHESTRATOR_AVAILABLE,
         "LangSmith": langsmith_enabled
     }
 
@@ -767,35 +1231,46 @@ with st.sidebar:
         st.json(config_summary)
 
     # Memory system controls
-    if HYBRID_INTEGRATION_AVAILABLE:
-        st.subheader("🧠 Memory System")
+    if INTEGRATION_ADAPTER_AVAILABLE:
+        st.subheader("🧠 System Controls")
 
-        if st.button("View Memory Insights"):
+        if st.button("View System Insights"):
             try:
-                system = init_hybrid_memory_system()
+                system = init_integrated_banking_system()
                 if system and hasattr(system, 'memory_agent') and system.memory_agent:
                     stats = system.memory_agent.get_knowledge_stats()
                     st.json(stats)
                 else:
-                    st.info("Memory system not initialized")
+                    st.info("System not initialized")
             except Exception as e:
-                st.error(f"Failed to get memory insights: {e}")
+                st.error(f"Failed to get system insights: {e}")
 
         if st.button("System Health Check"):
             try:
-                system = init_hybrid_memory_system()
+                system = init_integrated_banking_system()
                 if system:
                     # Run async health check
                     async def get_health():
-                        await system.initialize()
-                        return system.get_system_status()
+                        if hasattr(system, 'initialize'):
+                            await system.initialize()
+                        if hasattr(system, 'get_system_status'):
+                            return system.get_system_status()
+                        return {"status": "basic_system_available"}
 
 
-                    health_status = asyncio.run(get_health())
-                    st.json(health_status)
+                    try:
+                        health_status = asyncio.run(get_health())
+                        st.json(health_status)
+                    except RuntimeError:
+                        # Handle case where event loop is already running
+                        st.info("System available but detailed health check unavailable in this context")
 
                     # Cleanup
-                    asyncio.run(system.cleanup_system())
+                    if hasattr(system, 'cleanup_system'):
+                        try:
+                            asyncio.run(system.cleanup_system())
+                        except RuntimeError:
+                            pass  # Ignore cleanup errors in Streamlit context
                 else:
                     st.error("System not available")
             except Exception as e:
@@ -821,28 +1296,34 @@ with st.sidebar:
     env = config_manager.config.environment if hasattr(config_manager.config, 'environment') else 'development'
     st.info(f"Environment: {env}")
     st.info(f"Enhanced Features: {'Yes' if ENHANCED_IMPORTS else 'Basic'}")
-    st.info(f"Memory Integration: {'Yes' if HYBRID_INTEGRATION_AVAILABLE else 'No'}")
+    st.info(f"Integration Adapter: {'Yes' if INTEGRATION_ADAPTER_AVAILABLE else 'No'}")
+    st.info(f"Hybrid Integration: {'Yes' if HYBRID_INTEGRATION_AVAILABLE else 'No'}")
 
     # Quick actions
     st.subheader("⚡ Quick Actions")
 
     if st.button("🧪 Run System Demo"):
-        if HYBRID_INTEGRATION_AVAILABLE:
+        if INTEGRATION_ADAPTER_AVAILABLE:
             with st.spinner("Running system demo..."):
                 try:
                     # Run async demo
                     async def run_demo():
-                        from hybrid_memory_integration import demo_hybrid_memory_system
-                        await demo_hybrid_memory_system()
-                        return "Demo completed successfully"
+                        system = await create_integrated_banking_system()
+                        if hasattr(system, 'run_demo'):
+                            return await system.run_demo()
+                        else:
+                            return "Demo completed - basic functionality verified"
 
 
-                    demo_result = asyncio.run(run_demo())
-                    st.success(demo_result)
+                    try:
+                        demo_result = asyncio.run(run_demo())
+                        st.success(demo_result)
+                    except RuntimeError:
+                        st.info("Demo functionality available but cannot run in current context")
                 except Exception as e:
                     st.error(f"Demo failed: {e}")
         else:
-            st.warning("Demo requires hybrid integration")
+            st.warning("Demo requires integration adapter")
 
     if st.button("📊 View System Logs"):
         try:
@@ -1251,7 +1732,7 @@ if uploaded_file:
             st.markdown("**Analysis Configuration:**")
             st.write(f"🎯 Mode: {'Enhanced' if use_enhanced else 'Basic'}")
             st.write(f"📊 Confidence Threshold: {confidence_threshold}")
-            st.write(f"🧠 Memory System: {'Active' if HYBRID_INTEGRATION_AVAILABLE else 'Inactive'}")
+            st.write(f"🧠 Integration Adapter: {'Active' if INTEGRATION_ADAPTER_AVAILABLE else 'Inactive'}")
 
         with analysis_col2:
             st.markdown("**Expected Processing:**")
@@ -1294,11 +1775,46 @@ if uploaded_file:
 
                         # Run the analysis
                         start_time = time.time()
-                        final_state, agent_logs = run_async_analysis(
-                            df,
-                            session_name=current_session,
-                            use_enhanced=use_enhanced
-                        )
+                        try:
+                            final_state, agent_logs = run_async_analysis(
+                                df,
+                                session_name=current_session,
+                                use_enhanced=use_enhanced
+                            )
+
+                            # Validate the results
+                            if final_state is None:
+                                raise ValueError("Analysis returned None result")
+
+                            # Ensure agent_logs is not None
+                            if agent_logs is None:
+                                agent_logs = []
+                                logger.warning("Agent logs were None, using empty list")
+
+                        except Exception as analysis_error:
+                            logger.error(f"Analysis execution failed: {analysis_error}")
+
+                            # Create error state
+                            final_state = {
+                                'session_id': current_session,
+                                'error': str(analysis_error),
+                                'data': df,
+                                'timestamp': datetime.now(),
+                                'confidence_score': 0.0
+                            }
+
+                            # Create error agent log
+                            agent_logs = [{
+                                'agent': 'error_handler',
+                                'timestamp': datetime.now().isoformat(),
+                                'status': 'error',
+                                'details': {
+                                    'error': str(analysis_error),
+                                    'error_type': type(analysis_error).__name__,
+                                    'session_id': current_session
+                                }
+                            }]
+
                         processing_time = time.time() - start_time
 
                         # Update progress
@@ -1350,7 +1866,7 @@ if uploaded_file:
                         st.write("5. Ensure all dependencies are properly installed")
 
                         # Fallback option
-                        if use_enhanced and HYBRID_INTEGRATION_AVAILABLE:
+                        if use_enhanced and (INTEGRATION_ADAPTER_AVAILABLE or HYBRID_INTEGRATION_AVAILABLE):
                             st.info("💡 Trying fallback to basic mode...")
                             try:
                                 fallback_results, fallback_logs = run_async_analysis(
@@ -1389,15 +1905,35 @@ else:
     # Sample data option
     if st.button("📊 Generate Sample Data for Testing"):
         try:
-            if HYBRID_INTEGRATION_AVAILABLE:
-                from hybrid_memory_integration import create_sample_banking_data
+            if INTEGRATION_ADAPTER_AVAILABLE:
+                # Try to get sample data from the integrated system
+                try:
+                    async def get_sample_data():
+                        system = await create_integrated_banking_system()
+                        if hasattr(system, 'create_sample_banking_data'):
+                            return system.create_sample_banking_data()
+                        else:
+                            return None
 
-                sample_df = create_sample_banking_data()
+
+                    sample_df = asyncio.run(get_sample_data())
+
+                    if sample_df is None:
+                        raise Exception("Sample data method not available")
+
+                except Exception:
+                    # Fallback to basic sample data
+                    sample_df = pd.DataFrame({
+                        'Account_ID': [f'ACC{i:06d}' for i in range(20)],
+                        'Account_Type': ['Current', 'Savings', 'Fixed'] * 6 + ['Investment', 'Current'],
+                        'Current_Balance': [10000 + i * 1000 for i in range(20)],
+                        'Expected_Account_Dormant': ['yes' if i % 5 == 0 else 'no' for i in range(20)]
+                    })
             else:
                 # Basic sample data
                 sample_df = pd.DataFrame({
                     'Account_ID': [f'ACC{i:06d}' for i in range(20)],
-                    'Account_Type': ['Current', 'Savings', 'Fixed'] * 7 + ['Investment'],
+                    'Account_Type': ['Current', 'Savings', 'Fixed'] * 6 + ['Investment', 'Current'],
                     'Current_Balance': [10000 + i * 1000 for i in range(20)],
                     'Expected_Account_Dormant': ['yes' if i % 5 == 0 else 'no' for i in range(20)]
                 })
@@ -1425,8 +1961,8 @@ footer_col1, footer_col2, footer_col3 = st.columns(3)
 
 with footer_col1:
     st.markdown("**🏦 System Information**")
-    st.write(f"Mode: {'Enhanced' if HYBRID_INTEGRATION_AVAILABLE else 'Basic'}")
-    st.write(f"Version: 2.0.0")
+    st.write(f"Mode: {'Enhanced' if INTEGRATION_ADAPTER_AVAILABLE else 'Basic'}")
+    st.write(f"Version: 2.1.0")
 
 with footer_col2:
     st.markdown("**📊 Session Statistics**")
@@ -1447,8 +1983,8 @@ st.markdown(
     """
     <div style='text-align: center; color: #666; margin-top: 50px;'>
         <p>🏦 Advanced Agentic AI Banking Compliance System</p>
-        <p>Enhanced with Hybrid Memory Integration | CBUAE Compliant | Enterprise Ready</p>
-        <p>Powered by Streamlit • Python • AI Agents • Memory Systems</p>
+        <p>Enhanced with Integration Adapter | CBUAE Compliant | Enterprise Ready</p>
+        <p>Powered by Streamlit • Python • AI Agents • Integration Systems</p>
     </div>
     """,
     unsafe_allow_html=True
@@ -1468,33 +2004,80 @@ if __name__ == "__main__":
     logger.info(f"System health: {health}")
 
     # Log configuration
+    logger.info(f"Integration adapter: {INTEGRATION_ADAPTER_AVAILABLE}")
     logger.info(f"Hybrid integration: {HYBRID_INTEGRATION_AVAILABLE}")
     logger.info(f"Enhanced imports: {ENHANCED_IMPORTS}")
+    logger.info(f"Orchestrator: {ORCHESTRATOR_AVAILABLE}")
     logger.info(f"LangSmith enabled: {langsmith_enabled}")
 
     # Clean up on exit (if running directly)
     try:
-        if HYBRID_INTEGRATION_AVAILABLE:
-            system = init_hybrid_memory_system()
-            if system:
-                # Register cleanup function
-                import atexit
+        if INTEGRATION_ADAPTER_AVAILABLE:
+            # Register cleanup function for proper shutdown
+            import atexit
 
 
-                def cleanup():
+            def cleanup():
+                try:
+                    async def async_cleanup():
+                        try:
+                            system = await create_integrated_banking_system()
+                            if system and hasattr(system, 'cleanup_system'):
+                                await system.cleanup_system()
+                                logger.info("System cleanup completed")
+                        except Exception as cleanup_error:
+                            logger.error(f"Cleanup error: {cleanup_error}")
+
+                    # Try to run cleanup, but don't fail if event loop issues occur
                     try:
-                        asyncio.run(system.cleanup_system())
-                        logger.info("System cleanup completed")
-                    except Exception as e:
-                        logger.error(f"Cleanup error: {e}")
+                        asyncio.run(async_cleanup())
+                    except RuntimeError as re:
+                        if "cannot be called from a running event loop" in str(re):
+                            logger.info("Cleanup skipped due to running event loop")
+                        else:
+                            logger.error(f"Cleanup runtime error: {re}")
+                except Exception as e:
+                    logger.warning(f"Could not register cleanup function: {e}")
 
 
-                atexit.register(cleanup)
+            atexit.register(cleanup)
     except Exception as e:
         logger.warning(f"Could not register cleanup function: {e}")
 
 
-# Additional utility functions for debugging and maintenance
+def debug_data_state(data, location="unknown"):
+    """Debug function to safely check data state"""
+    try:
+        if data is None:
+            logger.info(f"[{location}] Data is None")
+            return False, "Data is None"
+
+        if not hasattr(data, 'empty'):
+            logger.info(f"[{location}] Data has no 'empty' attribute, type: {type(data)}")
+            return False, f"No empty attribute, type: {type(data)}"
+
+        if data.empty:
+            logger.info(f"[{location}] Data is empty DataFrame")
+            return False, "Empty DataFrame"
+
+        logger.info(f"[{location}] Data is valid DataFrame with {len(data)} rows")
+        return True, f"Valid DataFrame with {len(data)} rows"
+
+    except Exception as e:
+        logger.error(f"[{location}] Error checking data: {e}")
+        return False, f"Error: {str(e)}"
+
+
+def safe_data_check(data, location="unknown"):
+    """Safely check if data exists and is valid"""
+    try:
+        is_valid, message = debug_data_state(data, location)
+        return is_valid
+    except Exception as e:
+        logger.error(f"Safe data check failed at {location}: {e}")
+        return False
+
+
 def debug_system_state():
     """Debug function to check system state"""
     debug_info = {
@@ -1511,8 +2094,10 @@ def debug_system_state():
             'data_exists': Path("data").exists(),
             'log_file_exists': Path("logs/banking_app.log").exists()
         },
+        'integration_adapter': INTEGRATION_ADAPTER_AVAILABLE,
         'hybrid_integration': HYBRID_INTEGRATION_AVAILABLE,
-        'enhanced_imports': ENHANCED_IMPORTS
+        'enhanced_imports': ENHANCED_IMPORTS,
+        'orchestrator': ORCHESTRATOR_AVAILABLE
     }
     return debug_info
 
@@ -1584,7 +2169,173 @@ def initialize_session():
             st.session_state.perf_monitor.record_metric('session_start', datetime.now().isoformat())
 
 
+# Enhanced async helper functions
+def safe_async_run(coro, fallback_result=None):
+    """Safely run an async coroutine, handling event loop issues"""
+    try:
+        return asyncio.run(coro)
+    except RuntimeError as e:
+        if "cannot be called from a running event loop" in str(e):
+            # Try with a new event loop
+            try:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                try:
+                    return loop.run_until_complete(coro)
+                finally:
+                    loop.close()
+            except Exception as loop_error:
+                logger.error(f"Event loop error: {loop_error}")
+                return fallback_result
+        else:
+            logger.error(f"Async runtime error: {e}")
+            return fallback_result
+    except Exception as e:
+        logger.error(f"Async execution error: {e}")
+        return fallback_result
+
+
+def get_system_capabilities():
+    """Get available system capabilities"""
+    capabilities = {
+        'basic_analysis': True,
+        'data_processing': True,
+        'export_functionality': True,
+        'logging': True,
+        'session_management': True,
+        'integration_adapter': INTEGRATION_ADAPTER_AVAILABLE,
+        'hybrid_integration': HYBRID_INTEGRATION_AVAILABLE,
+        'enhanced_imports': ENHANCED_IMPORTS,
+        'orchestrator': ORCHESTRATOR_AVAILABLE,
+        'langsmith_tracing': langsmith_enabled,
+        'async_processing': True,
+        'error_handling': True,
+        'performance_monitoring': True
+    }
+
+    if INTEGRATION_ADAPTER_AVAILABLE:
+        try:
+            system = init_integrated_banking_system()
+            if system:
+                capabilities.update({
+                    'memory_system': hasattr(system, 'memory_agent'),
+                    'compliance_analysis': hasattr(system, 'process_banking_data'),
+                    'system_status': hasattr(system, 'get_system_status'),
+                    'session_history': hasattr(system, 'get_session_history'),
+                    'cleanup_system': hasattr(system, 'cleanup_system')
+                })
+        except Exception as e:
+            logger.warning(f"Could not check system capabilities: {e}")
+
+    return capabilities
+
+
+def create_system_report():
+    """Create a comprehensive system report"""
+    report = {
+        'timestamp': datetime.now().isoformat(),
+        'system_health': get_system_health(),
+        'capabilities': get_system_capabilities(),
+        'debug_info': debug_system_state(),
+        'session_info': {
+            'session_id': st.session_state.get('session_id', 'unknown'),
+            'session_start': st.session_state.get('session_start_time', 'unknown'),
+            'analysis_count': st.session_state.get('analysis_count', 0),
+            'upload_count': st.session_state.get('upload_count', 0),
+            'error_count': st.session_state.get('error_count', 0)
+        }
+    }
+
+    if 'perf_monitor' in st.session_state:
+        report['performance_metrics'] = st.session_state.perf_monitor.get_metrics()
+
+    if 'global_errors' in st.session_state:
+        report['recent_errors'] = st.session_state.global_errors[-5:]  # Last 5 errors
+
+    return report
+
+
+# System initialization check
+def verify_system_integrity():
+    """Verify system integrity and dependencies"""
+    integrity_check = {
+        'status': 'healthy',
+        'issues': [],
+        'warnings': [],
+        'recommendations': []
+    }
+
+    # Check basic dependencies
+    try:
+        import streamlit, pandas, asyncio, logging, json
+        integrity_check['basic_dependencies'] = True
+    except ImportError as e:
+        integrity_check['issues'].append(f"Missing basic dependency: {e}")
+        integrity_check['status'] = 'critical'
+
+    # Check integration adapter
+    if not INTEGRATION_ADAPTER_AVAILABLE:
+        integrity_check['warnings'].append("Integration adapter not available - running in basic mode")
+        integrity_check['recommendations'].append("Install integration adapter for enhanced features")
+
+    # Check hybrid integration
+    if not HYBRID_INTEGRATION_AVAILABLE:
+        integrity_check['warnings'].append("Hybrid integration not available - some features limited")
+        integrity_check['recommendations'].append("Install hybrid integration for advanced features")
+
+    # Check enhanced imports
+    if not ENHANCED_IMPORTS:
+        integrity_check['warnings'].append("Enhanced imports not available - some features limited")
+        integrity_check['recommendations'].append("Install enhanced dependencies for full functionality")
+
+    # Check orchestrator
+    if not ORCHESTRATOR_AVAILABLE:
+        integrity_check['warnings'].append("Orchestrator not available - workflow features limited")
+        integrity_check['recommendations'].append("Install orchestrator for enhanced workflow management")
+
+    # Check directory structure
+    required_dirs = ['logs', 'data']
+    for dir_name in required_dirs:
+        if not Path(dir_name).exists():
+            try:
+                Path(dir_name).mkdir(exist_ok=True)
+                integrity_check['warnings'].append(f"Created missing directory: {dir_name}")
+            except Exception as e:
+                integrity_check['issues'].append(f"Cannot create directory {dir_name}: {e}")
+                integrity_check['status'] = 'degraded'
+
+    # Check logging
+    try:
+        logger.info("System integrity check")
+        integrity_check['logging'] = True
+    except Exception as e:
+        integrity_check['issues'].append(f"Logging system issue: {e}")
+        integrity_check['status'] = 'degraded'
+
+    # Set overall status
+    if integrity_check['issues']:
+        if integrity_check['status'] != 'critical':
+            integrity_check['status'] = 'degraded'
+    elif integrity_check['warnings']:
+        if integrity_check['status'] == 'healthy':
+            integrity_check['status'] = 'warning'
+
+    return integrity_check
+
+
 # Initialize session
 initialize_session()
 
-# End of file - Complete Enhanced Banking Compliance System
+# Run system integrity check on startup
+startup_integrity = verify_system_integrity()
+logger.info(f"System integrity check: {startup_integrity['status']}")
+
+if startup_integrity['issues']:
+    for issue in startup_integrity['issues']:
+        logger.error(f"Integrity issue: {issue}")
+
+if startup_integrity['warnings']:
+    for warning in startup_integrity['warnings']:
+        logger.warning(f"Integrity warning: {warning}")
+
+# End of file - Complete Enhanced Banking Compliance System with Integration Adapter

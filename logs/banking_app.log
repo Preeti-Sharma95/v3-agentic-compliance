@@ -1,0 +1,522 @@
+2025-05-31 16:27:23,527 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 16:27:23,551 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 16:27:23,551 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 16:27:23,551 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 16:27:23,551 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 16:27:23,551 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 16:27:24,564 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 16:27:24,564 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 16:27:24,565 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 16:27:25,553 - __main__ - INFO - System health: {'timestamp': '2025-05-31T16:27:23.551711', 'integration_adapter': True, 'enhanced_imports': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 16:27:25,555 - __main__ - INFO - Integration adapter: True
+2025-05-31 16:27:25,556 - __main__ - INFO - Enhanced imports: True
+2025-05-31 16:27:25,556 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 16:27:25,558 - __main__ - INFO - New session initialized: streamlit_1748689045
+2025-05-31 16:27:25,560 - __main__ - INFO - System integrity check
+2025-05-31 16:27:25,561 - __main__ - INFO - System integrity check: healthy
+2025-05-31 16:27:35,121 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 16:27:35,390 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 16:27:35,392 - __main__ - INFO - System health: {'timestamp': '2025-05-31T16:27:35.392812', 'integration_adapter': True, 'enhanced_imports': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 16:27:35,394 - __main__ - INFO - Integration adapter: True
+2025-05-31 16:27:35,394 - __main__ - INFO - Enhanced imports: True
+2025-05-31 16:27:35,395 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 16:27:35,395 - __main__ - INFO - System integrity check
+2025-05-31 16:27:35,396 - __main__ - INFO - System integrity check: healthy
+2025-05-31 16:27:48,805 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 16:27:48,948 - __main__ - INFO - Starting analysis for session: streamlit_session_1748689068
+2025-05-31 16:27:48,949 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 16:27:48,956 - __main__ - ERROR - Enhanced analysis failed: 'IntegratedBankingComplianceSystem' object has no attribute 'process_banking_data'
+2025-05-31 16:27:48,956 - __main__ - INFO - Running fallback analysis
+2025-05-31 16:27:48,958 - __main__ - INFO - Analysis completed in 0.00 seconds
+2025-05-31 16:27:49,066 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 16:27:49,066 - __main__ - INFO - System health: {'timestamp': '2025-05-31T16:27:49.066635', 'integration_adapter': True, 'enhanced_imports': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 16:27:49,066 - __main__ - INFO - Integration adapter: True
+2025-05-31 16:27:49,066 - __main__ - INFO - Enhanced imports: True
+2025-05-31 16:27:49,066 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 16:27:49,066 - __main__ - INFO - System integrity check
+2025-05-31 16:27:49,066 - __main__ - INFO - System integrity check: healthy
+2025-05-31 17:15:35,234 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:15:35,510 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:15:35,511 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:15:35.511383', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:15:35,516 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:15:35,516 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:15:35,521 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:15:35,521 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:15:35,522 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:15:35,523 - __main__ - INFO - System integrity check
+2025-05-31 17:15:35,523 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:15:35,524 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:15:40,869 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:15:40,998 - __main__ - INFO - Starting analysis for session: streamlit_session_1748691940
+2025-05-31 17:15:40,998 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 17:15:41,002 - orchestrator - INFO - Starting enhanced compliance workflow for session: 5eec682d-854d-4775-acdd-e9ad5af48e52
+2025-05-31 17:15:41,004 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:15:41,004 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:15:41,005 - orchestrator - INFO - Starting compliance workflow for session: 0e14fd6e-9b0d-4009-b8ec-ea8d4c0537ce
+2025-05-31 17:15:41,006 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:15:41,006 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:15:41,007 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:15:41,008 - agents.dormant_identification_agent - INFO - Starting dormant identification for session 0e14fd6e-9b0d-4009-b8ec-ea8d4c0537ce
+2025-05-31 17:15:41,010 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:15:41,094 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:15:41,100 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:15:41,120 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:15:41,129 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:15:41,201 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:15:41,223 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:15:41,223 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:15:41,224 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:15:41,224 - orchestrator - INFO - Workflow completed for session: 0e14fd6e-9b0d-4009-b8ec-ea8d4c0537ce in 5 steps
+2025-05-31 17:15:41,226 - __main__ - INFO - Analysis completed in 0.22 seconds
+2025-05-31 17:15:41,244 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:15:41,245 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:15:41.245230', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:15:41,248 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:15:41,249 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:15:41,250 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:15:41,250 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:15:41,251 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:15:41,252 - __main__ - INFO - System integrity check
+2025-05-31 17:15:41,253 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:15:41,253 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:16:03,337 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:16:03,485 - __main__ - INFO - Starting analysis for session: streamlit_session_1748691963
+2025-05-31 17:16:03,486 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 17:16:03,489 - orchestrator - INFO - Starting enhanced compliance workflow for session: 77a0782a-c7f2-4376-af18-47f68b1e805d
+2025-05-31 17:16:03,491 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:16:03,492 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:16:03,493 - orchestrator - INFO - Starting compliance workflow for session: 5cba6ba5-08d7-4e46-9189-8653f5e3415b
+2025-05-31 17:16:03,493 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:16:03,494 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:16:03,495 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:16:03,495 - agents.dormant_identification_agent - INFO - Starting dormant identification for session 5cba6ba5-08d7-4e46-9189-8653f5e3415b
+2025-05-31 17:16:03,496 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:16:03,559 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:16:03,564 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:16:03,579 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:16:03,588 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:16:03,670 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:16:03,686 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:16:03,687 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:16:03,687 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:16:03,688 - orchestrator - INFO - Workflow completed for session: 5cba6ba5-08d7-4e46-9189-8653f5e3415b in 5 steps
+2025-05-31 17:16:03,690 - __main__ - INFO - Analysis completed in 0.20 seconds
+2025-05-31 17:16:03,716 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:16:03,719 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:16:03.719243', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:16:03,721 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:16:03,722 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:16:03,722 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:16:03,723 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:16:03,723 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:16:03,724 - __main__ - INFO - System integrity check
+2025-05-31 17:16:03,724 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:16:03,724 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:18:11,616 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:18:11,791 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:18:11,792 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:18:11.791305', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:18:11,799 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:18:11,800 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:18:11,800 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:18:11,801 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:18:11,801 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:18:11,803 - __main__ - INFO - System integrity check
+2025-05-31 17:18:11,803 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:18:11,804 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:18:21,953 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:18:22,099 - __main__ - INFO - Starting analysis for session: streamlit_session_1748692102
+2025-05-31 17:18:22,101 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 17:18:22,104 - orchestrator - INFO - Starting enhanced compliance workflow for session: 401f4120-4975-4334-a6c7-dfdb8ade26de
+2025-05-31 17:18:22,105 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:18:22,105 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:18:22,106 - orchestrator - INFO - Starting compliance workflow for session: 2fc2136d-5987-47ed-937f-783acc1d1989
+2025-05-31 17:18:22,106 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:18:22,107 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:18:22,107 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:18:22,108 - agents.dormant_identification_agent - INFO - Starting dormant identification for session 2fc2136d-5987-47ed-937f-783acc1d1989
+2025-05-31 17:18:22,110 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:18:22,170 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:18:22,176 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:18:22,190 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:18:22,200 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:18:22,274 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:18:22,315 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:18:22,319 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:18:22,320 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:18:22,320 - orchestrator - INFO - Workflow completed for session: 2fc2136d-5987-47ed-937f-783acc1d1989 in 5 steps
+2025-05-31 17:18:22,324 - __main__ - INFO - Analysis completed in 0.22 seconds
+2025-05-31 17:18:22,354 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:18:22,355 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:18:22.354405', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:18:22,356 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:18:22,357 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:18:22,358 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:18:22,358 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:18:22,359 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:18:22,360 - __main__ - INFO - System integrity check
+2025-05-31 17:18:22,361 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:18:22,362 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:18:50,520 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:18:50,692 - __main__ - INFO - Starting analysis for session: streamlit_session_1748692130
+2025-05-31 17:18:50,695 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 17:18:50,698 - orchestrator - INFO - Starting enhanced compliance workflow for session: d20158d0-48b6-442f-a166-7b84f6ad6017
+2025-05-31 17:18:50,699 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:18:50,700 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:18:50,701 - orchestrator - INFO - Starting compliance workflow for session: c963dcf3-ed93-4fb5-bc8c-e04002cd5e0c
+2025-05-31 17:18:50,701 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:18:50,702 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:18:50,703 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:18:50,703 - agents.dormant_identification_agent - INFO - Starting dormant identification for session c963dcf3-ed93-4fb5-bc8c-e04002cd5e0c
+2025-05-31 17:18:50,704 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:18:50,768 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:18:50,773 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:18:50,789 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:18:50,801 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:18:50,873 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:18:50,907 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:18:50,919 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:18:50,920 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:18:50,920 - orchestrator - INFO - Workflow completed for session: c963dcf3-ed93-4fb5-bc8c-e04002cd5e0c in 5 steps
+2025-05-31 17:18:50,924 - __main__ - INFO - Analysis completed in 0.23 seconds
+2025-05-31 17:18:50,967 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:18:50,968 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:18:50.968666', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:18:50,971 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:18:50,971 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:18:50,972 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:18:50,972 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:18:50,973 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:18:50,975 - __main__ - INFO - System integrity check
+2025-05-31 17:18:50,975 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:18:50,977 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:18:55,652 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:18:55,811 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:18:55,813 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:18:55.813400', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:18:55,816 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:18:55,817 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:18:55,817 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:18:55,818 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:18:55,818 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:18:55,819 - __main__ - INFO - System integrity check
+2025-05-31 17:18:55,820 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:18:55,820 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:19:24,713 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:19:24,835 - __main__ - INFO - Starting analysis for session: streamlit_session_1748692164
+2025-05-31 17:19:24,836 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 17:19:24,839 - orchestrator - INFO - Starting enhanced compliance workflow for session: 7980f2bd-2db0-439c-8600-ad54d7ad47a3
+2025-05-31 17:19:24,841 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:19:24,842 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:19:24,843 - orchestrator - INFO - Starting compliance workflow for session: 199536cf-e4c7-4e3c-99b8-19e956845dc2
+2025-05-31 17:19:24,846 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:19:24,846 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:19:24,847 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:19:24,848 - agents.dormant_identification_agent - INFO - Starting dormant identification for session 199536cf-e4c7-4e3c-99b8-19e956845dc2
+2025-05-31 17:19:24,849 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:19:24,963 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:19:24,968 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:19:24,992 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:19:24,999 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:19:25,080 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:19:25,105 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:19:25,105 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:19:25,105 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:19:25,106 - orchestrator - INFO - Workflow completed for session: 199536cf-e4c7-4e3c-99b8-19e956845dc2 in 5 steps
+2025-05-31 17:19:25,110 - __main__ - INFO - Analysis completed in 0.27 seconds
+2025-05-31 17:19:25,136 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:19:25,137 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:19:25.136680', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:19:25,142 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:19:25,142 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:19:25,143 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:19:25,143 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:19:25,144 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:19:25,145 - __main__ - INFO - System integrity check
+2025-05-31 17:19:25,145 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:19:25,145 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:21:06,595 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:21:06,753 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:21:06,754 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:21:06.754889', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:21:06,756 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:21:06,756 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:21:06,757 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:21:06,757 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:21:06,758 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:21:06,759 - __main__ - INFO - System integrity check
+2025-05-31 17:21:06,759 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:21:06,760 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:22:59,464 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:22:59,596 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:22:59,597 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:22:59.597809', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:22:59,603 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:22:59,604 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:22:59,605 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:22:59,605 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:22:59,606 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:22:59,607 - __main__ - INFO - System integrity check
+2025-05-31 17:22:59,607 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:22:59,608 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:23:08,674 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:23:08,823 - __main__ - INFO - Starting analysis for session: streamlit_session_1748692388
+2025-05-31 17:23:08,824 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 17:23:08,828 - orchestrator - INFO - Starting enhanced compliance workflow for session: c370c91c-fd8d-4d74-ad51-c1ca58d568b6
+2025-05-31 17:23:08,829 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:23:08,830 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:23:08,831 - orchestrator - INFO - Starting compliance workflow for session: 94eb7557-20a0-4300-b14d-ba4d4935c703
+2025-05-31 17:23:08,831 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:23:08,832 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:23:08,832 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:23:08,833 - agents.dormant_identification_agent - INFO - Starting dormant identification for session 94eb7557-20a0-4300-b14d-ba4d4935c703
+2025-05-31 17:23:08,834 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:23:08,893 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:23:08,901 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:23:08,919 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:23:08,928 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:23:08,998 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:23:09,023 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:23:09,024 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:23:09,025 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:23:09,025 - orchestrator - INFO - Workflow completed for session: 94eb7557-20a0-4300-b14d-ba4d4935c703 in 5 steps
+2025-05-31 17:23:09,031 - __main__ - INFO - Analysis completed in 0.20 seconds
+2025-05-31 17:23:09,051 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:23:09,052 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:23:09.051035', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:23:09,054 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:23:09,054 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:23:09,054 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:23:09,055 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:23:09,055 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:23:09,056 - __main__ - INFO - System integrity check
+2025-05-31 17:23:09,056 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:23:09,057 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:23:36,850 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:36,852 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:36,852 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:36,853 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:37,863 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:37,864 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:37,864 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:38,854 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:38,855 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:38,856 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:38,856 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:39,858 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:39,859 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:39,859 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:40,850 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:40,851 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:40,851 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:40,851 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:41,853 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:41,853 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:41,854 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:42,861 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:42,862 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:42,863 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:42,864 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:43,865 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:43,866 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:43,866 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:44,869 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:44,870 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:44,871 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:44,872 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:45,861 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:45,862 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:45,862 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:46,871 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:46,872 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:46,873 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:46,873 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:47,874 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:47,875 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:47,876 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:48,890 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:48,891 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:48,892 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:48,892 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:49,894 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:49,895 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:49,896 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:50,902 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:50,903 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:50,904 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:50,904 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:51,920 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:51,921 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:51,921 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:52,915 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:52,916 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:52,917 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:52,917 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:53,904 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:53,905 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:53,905 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:54,912 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:54,913 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:54,914 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:54,915 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:55,919 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:55,919 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:55,920 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:56,913 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:56,913 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:56,914 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:56,914 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:57,918 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:57,919 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:57,919 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:23:58,921 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:23:58,921 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:23:58,922 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:23:58,922 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:23:59,925 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:23:59,926 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:23:59,927 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:24:00,929 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:24:00,930 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:24:00,930 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:24:00,930 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:24:01,933 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:24:01,933 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:24:01,934 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:24:02,921 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:24:02,922 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:24:02,922 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:24:02,922 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:24:03,926 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:24:03,927 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:24:03,927 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:24:38,133 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:24:38,166 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:24:38,177 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:24:38,178 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:24:38,178 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:24:38,179 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:24:39,194 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:24:39,195 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:24:39,196 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:24:40,195 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:24:38.167633', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:24:40,197 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:24:40,198 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:24:40,198 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:24:40,199 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:24:40,200 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:24:40,201 - __main__ - INFO - New session initialized: streamlit_1748692480
+2025-05-31 17:24:40,203 - __main__ - INFO - System integrity check
+2025-05-31 17:24:40,203 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:24:40,204 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:24:44,842 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:24:45,052 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:24:45,053 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:24:45.053085', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:24:45,055 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:24:45,056 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:24:45,057 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:24:45,057 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:24:45,058 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:24:45,059 - __main__ - INFO - System integrity check
+2025-05-31 17:24:45,060 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:24:45,060 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:24:54,054 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:24:54,191 - __main__ - INFO - Starting analysis for session: streamlit_session_1748692494
+2025-05-31 17:24:54,191 - __main__ - INFO - Data shape: (1000, 33), Mode: Enhanced
+2025-05-31 17:24:54,194 - orchestrator - INFO - Starting enhanced compliance workflow for session: 80c653a3-fb01-48a0-a941-b84df152ef16
+2025-05-31 17:24:54,195 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:24:54,195 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:24:54,196 - orchestrator - INFO - Starting compliance workflow for session: 7bf7aeaa-098e-4a79-b424-9a08ae8eb601
+2025-05-31 17:24:54,197 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:24:54,197 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:24:54,198 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:24:54,198 - agents.dormant_identification_agent - INFO - Starting dormant identification for session 7bf7aeaa-098e-4a79-b424-9a08ae8eb601
+2025-05-31 17:24:54,199 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:24:54,279 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:24:54,285 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:24:54,306 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:24:54,314 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:24:54,399 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:24:54,420 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:24:54,421 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:24:54,421 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:24:54,422 - orchestrator - INFO - Workflow completed for session: 7bf7aeaa-098e-4a79-b424-9a08ae8eb601 in 5 steps
+2025-05-31 17:24:54,424 - __main__ - INFO - Analysis completed in 0.23 seconds
+2025-05-31 17:24:54,442 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:24:54,442 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:24:54.442504', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:24:54,448 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:24:54,449 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:24:54,450 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:24:54,451 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:24:54,452 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:24:54,453 - __main__ - INFO - System integrity check
+2025-05-31 17:24:54,456 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:24:54,456 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:25:03,170 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:25:03,323 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:25:03,326 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:25:03.326245', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:25:03,331 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:25:03,331 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:25:03,332 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:25:03,332 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:25:03,333 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:25:03,334 - __main__ - INFO - System integrity check
+2025-05-31 17:25:03,334 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:25:03,335 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:25:04,752 - utils.langsmith_setup - WARNING - LangSmith API key not provided
+2025-05-31 17:25:04,913 - __main__ - INFO - Starting analysis for session: streamlit_session_1748692504
+2025-05-31 17:25:04,914 - __main__ - INFO - Data shape: (1000, 33), Mode: Basic
+2025-05-31 17:25:04,917 - orchestrator - INFO - Starting enhanced compliance workflow for session: e4bf82cb-33db-4342-91f0-48164cd8a713
+2025-05-31 17:25:04,918 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:25:04,918 - orchestrator - INFO - Dormant analysis mode: enhanced
+2025-05-31 17:25:04,919 - orchestrator - INFO - Starting compliance workflow for session: 483e5e47-02e8-4671-b7d1-6044d1abdc6e
+2025-05-31 17:25:04,919 - agents.dormant_identification_agent - INFO - Dormant Identification Agent initialized with enhanced modular analyzers
+2025-05-31 17:25:04,920 - orchestrator - INFO - Processing step: data_ingest (step 1)
+2025-05-31 17:25:04,920 - orchestrator - INFO - Processing step: dormant_identification (step 2)
+2025-05-31 17:25:04,921 - agents.dormant_identification_agent - INFO - Starting dormant identification for session 483e5e47-02e8-4671-b7d1-6044d1abdc6e
+2025-05-31 17:25:04,922 - agents.dormant_summary_agent - INFO - Starting comprehensive dormancy analysis for 1000 accounts
+2025-05-31 17:25:04,987 - agents.dormant_analyzers - ERROR - Article 3 Process Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:25:04,996 - agents.dormant_analyzers - ERROR - Proactive Contact Analysis Error: 'str' object has no attribute 'astype'
+2025-05-31 17:25:05,010 - agents.dormant_summary_agent - INFO - Comprehensive dormancy analysis completed. Found 1110 flagged accounts across 10 checks
+2025-05-31 17:25:05,020 - agents.dormant_identification_agent - ERROR - Enhanced analysis failed, falling back to legacy: MemoryAgent.log() got an unexpected keyword argument 'importance'
+2025-05-31 17:25:05,097 - orchestrator - INFO - Processing step: compliance_check (step 3)
+2025-05-31 17:25:05,124 - orchestrator - INFO - Processing step: supervisor (step 4)
+2025-05-31 17:25:05,125 - orchestrator - INFO - Processing step: notify (step 5)
+2025-05-31 17:25:05,125 - orchestrator - ERROR - Error in step 5: 'NoneType' object has no attribute 'empty'
+2025-05-31 17:25:05,126 - orchestrator - INFO - Workflow completed for session: 483e5e47-02e8-4671-b7d1-6044d1abdc6e in 5 steps
+2025-05-31 17:25:05,129 - __main__ - INFO - Analysis completed in 0.21 seconds
+2025-05-31 17:25:05,146 - __main__ - INFO - Starting Advanced AI Banking Compliance System
+2025-05-31 17:25:05,146 - __main__ - INFO - System health: {'timestamp': '2025-05-31T17:25:05.146138', 'integration_adapter': True, 'enhanced_imports': True, 'hybrid_integration': False, 'orchestrator': True, 'components': {'streamlit': True, 'pandas': True, 'logging': True}, 'system_status': {'system_mode': 'hybrid_integration', 'components': {'rag_agentic_available': True, 'legacy_available': True, 'rag_agentic_initialized': True, 'legacy_initialized': True}, 'execution_stats': {'total_sessions': 0, 'legacy_executions': 0, 'rag_agentic_executions': 0, 'hybrid_executions': 0, 'fallback_executions': 0, 'average_processing_time': 0.0, 'success_rate': 0.0}, 'capabilities': {'natural_language_queries': True, 'legacy_compatibility': True, 'hybrid_processing': True, 'fallback_processing': True}, 'rag_agentic_status': {'rag_knowledge_base': {'total_agents': 1, 'vector_store_available': False, 'embedding_model': 'text-embedding-3-small'}, 'pandas_agent': {'performance': {'total_queries': 0, 'success_rate': 0.0, 'average_execution_time': 0.0, 'common_operations': {}, 'recent_queries': []}, 'current_dataframe_shape': None}, 'processing_history': {'total_sessions': 0, 'total_results': 0, 'recent_modes': []}, 'capabilities': {'langchain_available': False, 'smolagents_available': False, 'supported_modes': ['rag_only', 'agentic_only', 'hybrid', 'auto_select']}}}}
+2025-05-31 17:25:05,152 - __main__ - INFO - Integration adapter: True
+2025-05-31 17:25:05,153 - __main__ - INFO - Hybrid integration: False
+2025-05-31 17:25:05,154 - __main__ - INFO - Enhanced imports: True
+2025-05-31 17:25:05,154 - __main__ - INFO - Orchestrator: True
+2025-05-31 17:25:05,155 - __main__ - INFO - LangSmith enabled: False
+2025-05-31 17:25:05,156 - __main__ - INFO - System integrity check
+2025-05-31 17:25:05,157 - __main__ - INFO - System integrity check: warning
+2025-05-31 17:25:05,158 - __main__ - WARNING - Integrity warning: Hybrid integration not available - some features limited
+2025-05-31 17:25:19,350 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:25:19,351 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:25:19,353 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:25:19,353 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:25:20,369 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:25:20,369 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:25:20,370 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:25:21,342 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:25:21,342 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:25:21,343 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:25:21,343 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:25:22,357 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:25:22,357 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:25:22,358 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:25:23,354 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:25:23,355 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:25:23,356 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:25:23,356 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:25:24,360 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:25:24,361 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:25:24,361 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:25:25,349 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:25:25,350 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:25:25,351 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:25:25,351 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:25:26,354 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:25:26,355 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:25:26,357 - integration_adapter - INFO - System initialized with mode: hybrid_integration
+2025-05-31 17:25:27,348 - integration_adapter - INFO - Initializing integrated system in mode: auto_fallback
+2025-05-31 17:25:27,349 - rag_enhanced_banking_architecture - INFO - RAG knowledge base loaded successfully
+2025-05-31 17:25:27,350 - rag_enhanced_banking_architecture - ERROR - Failed to add agent summary: name 'Document' is not defined
+2025-05-31 17:25:27,350 - rag_enhanced_banking_architecture - WARNING - Failed to initialize default agents: name 'Document' is not defined
+2025-05-31 17:25:28,357 - integration_adapter - INFO - RAG-Agentic system initialized successfully
+2025-05-31 17:25:28,358 - integration_adapter - INFO - Legacy system components initialized
+2025-05-31 17:25:28,358 - integration_adapter - INFO - System initialized with mode: hybrid_integration
